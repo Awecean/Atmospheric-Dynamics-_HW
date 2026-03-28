@@ -135,7 +135,7 @@ def plot_1_circulation_in_1_window(init_lat, u0, v0, runtime_days_with_c, runtim
     plt.plot(long_with_one, lat_with_one, label='With curvature terms') #line color: rainbow
     plt.plot(long_without_one, lat_without_one, 'r', label='Without curvature terms')
     plt.plot(long_with_one[0], lat_with_one[0], 'kd', label='Initial position')
-    plt.title(f'Trajectory comparison for one full circulation:\n {runtime_days_with_c:.4f} days (with curvature)\n {runtime_days_without_c:.4f} days (without curvature)')
+    plt.title(f'Trajectory comparison for one full circulation u0 = {u0}, v0 = {v0}:\n {runtime_days_with_c:.4f} days (with curvature)\n {runtime_days_without_c:.4f} days (without curvature)')
     plt.xlabel('Longitude (degrees)')
     plt.ylabel('Latitude (degrees)')
     plt.ylim(min_lat-2, max_lat+2)  # Set y-axis limits to focus on the region around the initial latitude
@@ -215,21 +215,25 @@ def main():
     (a) Initial latitude 60°, u0 = 40 m/s, v0 = 40 m/s, runtime = 5 days.
     (b) Initial latitude 60°, u0 = 40 m/s, v0 = 80 m/s, runtime adjusted for full circuit observation.
     """
+    ## Case in code note but not in presentation
     # Case (a)
+    print('Running Case in code but not in presentation:')
     print("Running Case (a):")
     run_simulation(init_lat=60, u0=40, v0=40, runtime_days=5) # case (a) in code but not in presentation
+    # Case (b)
+    print("Running Case (b):")
     run_simulation(init_lat=60, u0=40, v0=80, runtime_days=5) # case (b) in code but not in presentation
     plot_1_circulation_in_1_window(init_lat=60, u0=40, v0=80, runtime_days_with_c=t_period_with_curvature/86400, runtime_days_without_c=t_period_without_curvature/86400)
     # One circulation for with/without curvature terms, plot in the same window for better comparison
     plot_1_circulation_in_2_windows(init_lat=60, u0=40, v0=80, runtime_days_with_c=t_period_with_curvature/86400, runtime_days_without_c=t_period_without_curvature/86400)
 
-
+    ## Case in Presentation
+    # Case (a)
+    print('Running Case in Presentation')
+    print("Running Case (a):")
     run_simulation(init_lat=60, u0=0, v0=40, runtime_days=5)
-    run_simulation(init_lat=60, u0=0, v0=80, runtime_days=5)  
-
-    # Case (b)
     print("Running Case (b):")
-
+    run_simulation(init_lat=60, u0=0, v0=80, runtime_days=5)   
     # One circulation for with/without curvature terms, plot in the two windows separately
     plot_1_circulation_in_1_window(init_lat=60, u0=0, v0=80, runtime_days_with_c=t_period_with_curvature/86400, runtime_days_without_c=t_period_without_curvature/86400)
     # One circulation for with/without curvature terms, plot in the same window for better comparison
